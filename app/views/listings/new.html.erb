@@ -1,0 +1,66 @@
+<%= render 'partial/navbar' %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="text-center">
+						<span style="font-size:24px;">カメラリスティングを掲載する</span>
+					</div>
+				</div>
+			
+				<div class="panel-body">			
+					<!-- ここからフォーム -->
+					<%= form_for @listing do |f| %>
+						<div class="row">
+							<div class="col-md-12 select">
+								<div class="form-group">
+									<label>撮影の種類</label>
+									<%= f.select :photo_type, [["個人写真","個人写真"], ["カップル写真","カップル写真"], ["結婚写真","結婚写真"], ["家族写真","家族写真"], ["その他","その他"]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<div class="row">
+							<div class="col-md-12 select">
+								<div class="form-group">
+									<label>撮影機材</label>
+									<%= f.select :camera_type, [["デジタル一眼レフ","デジタル一眼レフ"], ["コンパクトデジタル","コンパクトデジタル"], ["小型デジタル","小型デジタル"], ["ミラーレス一眼","ミラーレス一眼"],  ["その他","その他"]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<div class="row">
+							<div class="col-md-12 select">
+								<div class="form-group">
+									<label>撮影時間</label>
+									<%= f.select :photo_time, [["30分","30"], ["1時間","1"], ["2時間","2"], ["3時間以上","3"]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<div class="row">
+							<div class="col-md-12 select">
+								<div class="form-group">
+									<label>仕上がりまでの期間</label>
+									<%= f.select :finish_time, [["3日",3], ["5日",5], ["7日",7], ["9日",9], ["11日",11], ["12日以上",12]], {prompt:"選択してください"}, {required: 'true', autofocus: 'true', class: 'form-control'} %>
+								</div>
+							</div>
+						</div>
+						<br>
+
+						<div class="actions">
+							<%= f.submit "Save", class: "btn btn-danger" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
