@@ -37,6 +37,9 @@
             <ul class="dropdown-menu">
               <li><%= link_to "プロフィール", user_path(current_user) %></li>
               <li><%= link_to "プロフィール編集",  edit_user_registration_path %></li>
+              <li><%= link_to "リスティング管理",  listings_path %></li>
+              <li><%= link_to "撮影してもらう",  reservations_path %></li>
+              <li><%= link_to "撮影予定",  reserved_path %></li>              
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             </ul>
           </li>          

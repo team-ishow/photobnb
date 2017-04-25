@@ -1,4 +1,5 @@
 Rails.application.configure do
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -40,6 +41,8 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   config.action_mailer.default_url_options = { host: "rails-tutorial-rikeda05.c9users.io", port: 8080 }
+
+  config.web_console.whitelisted_ips = '126.168.53.155'
 
   config.paperclip_defaults = {
     storage: :s3,

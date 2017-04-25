@@ -8,14 +8,18 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'toastr-rails'
 gem 'omniauth-facebook'
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 5.0.0.beta1"
 gem 'dropzonejs-rails'
 gem "figaro", "~> 1.1.0"
 gem 'aws-sdk', '~> 2.3'
+gem 'geocoder'
+gem 'jquery-ui-rails'
+gem 'stripe'
 
 
 group :production do 
