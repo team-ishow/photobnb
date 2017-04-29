@@ -82,7 +82,7 @@
                         </div>
                         
                         <div class="panel-body panel-real">         
-                            <%= form_for [@listing, @listing.reservations.new] do |f| %>       
+                            <%= form_for [@listing, @listing.reservations.new], url: new_listing_reservation_path(@listing), html: {method: "get"} do |f| %>   
                                            
                                 <!-- これは、予約をするときに、一緒におくる、データです。-->
                                 <%= f.hidden_field :listing_id, value: @listing.id %>
@@ -165,21 +165,24 @@
     </div>  
 
 
-    <!-- レビュー    -->
-    <div class="row">
-        <div class="col-md-9">
-            <h3 class="row-space-3">レビュー</h3>
-        </div>
+    <!-- レビュー     -->
+    <div class="row row-space-4">
+      <div class="col-md-9">
+        <h3 class="row-space-3">レビュー<%= @reviews.count %>件</h3>
+        <div id="average_star_rate"></div>
+          <%= render 'reviews/form' if @currentUserBooking && !@currentUserReview %>
+          <%= render 'reviews/list' %>
+      </div>
 
-        <div class="col-md-3">
-        
-        </div>
+      <div class="col-md-3">
+      
+      </div>
     </div>
 
     <!-- google map    -->
     <div class="row">
         <div class="col-md-9">
-            <h3 class="row-space-3">撮影可能地域</h3>            
+            <h3 class="row-space-3">アクセス</h3>
             <div id="map"></div>
         </div>
 
@@ -188,10 +191,11 @@
         </div>
     </div>
     <style>
-      #map {
-        width: 100%;
-        height: 350px;
-      }
+        #map{
+            width: 100%;
+            height: 350px;
+        }
+        
     </style>
 
     <!-- 近くのリスティング    -->
@@ -224,7 +228,7 @@
                     </div>
                 </div>
             <% end %>
-
+            
         </div>
 
         <div class="col-md-3">
@@ -420,4 +424,12 @@ $(function() {
     }
   });
 });
+</script>
+
+<script>
+  $('#average_star_rate').raty({
+      path: '/assets',
+      readOnly: true,
+      score: <%= @listing.average_star_rate %>
+  });
 </script>

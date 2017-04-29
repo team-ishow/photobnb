@@ -97,7 +97,8 @@ class StripeOauth < Struct.new( :user )
       stripe_user_id: nil,
       secret_key: nil,
       publishable_key: nil,
-      currency: nil
+      currency: nil,
+      stripe_account_type: nil
     )
   end
 

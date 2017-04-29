@@ -42,7 +42,6 @@ Rails.application.configure do
   
   config.action_mailer.default_url_options = { host: "rails-tutorial-rikeda05.c9users.io", port: 8080 }
 
-  config.web_console.whitelisted_ips = '126.168.53.155'
 
   config.paperclip_defaults = {
     storage: :s3,
