@@ -1,3 +1,8 @@
+<script>
+  $(function(){
+    $("#pac-input").removeClass("hidden")
+  });
+</script>
 <%= render 'partial/navbar' %>
 
 <div class="container-fluid">
@@ -75,6 +80,7 @@ function initMap() {
             
   <% end %>
 
+  //autocompleteの検索欄が変更された時の処理
   autocomplete.addListener('place_changed', function() {
 
     // すべてのinfowindowを消す
@@ -122,10 +128,40 @@ function initMap() {
     $.ajax({
       url: '/ajaxsearch',
         // this data is data for sending to url
-        data: {'geolocation': geolocation}
+        data: {'geolocation': geolocation, 'location': location}
     });
 
   });
+  
+  //google map がドラッグされた時の処理
+  google.maps.event.addListener(map, 'dragend', function() { 
+    // すべてのinfowindowを消す
+    infowindows.forEach(function(infowindow) {
+      infowindow.close();
+    });
+    infowindows = [];
+
+    // すべてのmarkerを消す
+    markers.forEach(function(marker) {
+        marker.setVisible(false);
+    });
+    markers = [];
+    
+    var pos = map.getCenter();
+    var lat = pos.lat();
+    var lng = pos.lng();
+
+    var geolocation = [lat,lng];
+    
+    $.ajax({
+      url: '/ajaxsearch',
+      // this data is data for sending to url
+      data: {'geolocation': geolocation}
+    });
+
+  });
+
+
 }
 
 </script>

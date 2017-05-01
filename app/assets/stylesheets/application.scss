@@ -5,11 +5,10 @@
 @import "jquery-ui/datepicker";
 @import "jquery-bootstrap-datepicker";
 
-
 .jumbotron {
-    padding-top: 0px;
-    // 背景画像を暗くする
-    background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05) ), url(adult-1836485_1920.jpg);
+  padding-top: 0px;
+  // 背景画像を暗くする
+  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05) ), url(adult-1836485_1920.jpg);
   background-size: cover;
   // 背景画像の位置を決める
   background-position: 50% 50%;
@@ -513,6 +512,10 @@ section h3.section-subheading {
   text-transform: none;
   font-style: italic;
   font-weight: 400;
+}
+
+#search-result .panel-body{
+  height: 95px;
 }
 
 a {

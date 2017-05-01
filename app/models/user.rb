@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :reservations
   has_many :reviews
   
-  has_attached_file :image, :styles => { :medium => "400x400", :thumb => "100x100>" }, :default_url => "avatar-default.png"
+  has_attached_file :image, :styles => { :medium => "300x300", :thumb => "100x100>" }, :default_url => "avatar-default.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/  
   
   def self.from_omniauth(auth)

@@ -5,6 +5,8 @@ class PagesController < ApplicationController
 
   def search
     if params[:search].present?
+
+      session[:address] = params[:search]
       
       if params["lat"].present? & params["lng"].present? 
         @latitude = params["lat"]
@@ -23,8 +25,8 @@ class PagesController < ApplicationController
     else
 
       @listings = Listing.where(active: true).all
-     #  @latitude = @listings.to_a[0].latitude
-     #  @longitude = @listings.to_a[0].longitude  
+      @latitude = @listings.to_a[0].latitude
+      @longitude = @listings.to_a[0].longitude  
 
     end
 
@@ -83,14 +85,17 @@ class PagesController < ApplicationController
     @search = @listings.ransack(session[:q])
     @result = @search.result(distinct: true)
 
-    #リスティングデータを配列にしてまとめる 
-    @arrlistings = @listings.to_a
+     #リスティングデータを配列にしてまとめる 
+    @arrlistings = @result.to_a
 
     # start_date end_dateの間に予約がないことを確認.あれば削除
     if ( !params[:start_date].blank? && !params[:end_date].blank? )
 
-      start_date = Date.parse(params[:start_date])
-      end_date = Date.parse(params[:end_date])
+      session[:start_date] = params[:start_date]
+      session[:end_date] = params[:end_date]
+
+      start_date = Date.parse(session[:start_date])
+      end_date = Date.parse(session[:end_date])
 
       @listings.each do |listing|
 
@@ -119,16 +124,21 @@ class PagesController < ApplicationController
       geolocation = params[:geolocation]
     end
 
+    # まずajaxで送られてきた緯度経度をセッションに入れる
+    if !params[:location].blank?
+      session[:address] = params[:location]
+    end
+
     @listings = Listing.where(active: true).near(geolocation, 1, order: 'distance')
 
     #リスティングデータを配列にしてまとめる 
     @arrlistings = @listings.to_a
 
     # start_date end_dateの間に予約がないことを確認.あれば削除
-    if ( !params[:start_date].blank? && !params[:end_date].blank? )
+    if ( !session[:start_date].blank? && !session[:end_date].blank? )
 
-      start_date = Date.parse(params[:start_date])
-      end_date = Date.parse(params[:end_date])
+      start_date = Date.parse(session[:start_date])
+      end_date = Date.parse(session[:end_date])
 
       @listings.each do |listing|
 

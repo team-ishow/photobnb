@@ -1,4 +1,6 @@
 $('#search-result').html("<%= j render 'pages/list' %>");
+document.getElementById('search-address').value = "<%= session[:address] %>";
+
 <% @arrlistings.each do |listing| %>
   //markerはこの関数の中で同じ変数
   var marker = new google.maps.Marker({
