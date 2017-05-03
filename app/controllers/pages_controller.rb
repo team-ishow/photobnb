@@ -7,17 +7,6 @@ class PagesController < ApplicationController
     if params[:search].present?
 
       session[:address] = params[:search]
-      
-      if params["lat"].present? & params["lng"].present? 
-        @latitude = params["lat"]
-        @longitude = params["lng"]
-
-        geolocation = [@latitude,@longitude]
-      else
-        geolocation = Geocoder.coordinates(params[:search])
-        @latitude = geolocation[0]
-        @longitude = geolocation[1]
-      end
 
       @listings = Listing.where(active: true).near(geolocation, 1, order: 'distance')
 
@@ -25,8 +14,6 @@ class PagesController < ApplicationController
     else
 
       @listings = Listing.where(active: true).all
-      @latitude = @listings.to_a[0].latitude
-      @longitude = @listings.to_a[0].longitude  
 
     end
 
