@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426141335) do
+ActiveRecord::Schema.define(version: 20170503031341) do
 
   create_table "coversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -31,11 +31,13 @@ ActiveRecord::Schema.define(version: 20170426141335) do
     t.integer  "price_photo"
     t.boolean  "active"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.float    "latitude"
-    t.float    "longitude"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "not_checked"
+    t.boolean  "make_up",            default: false, null: false
+    t.boolean  "clothes",            default: false, null: false
+    t.boolean  "photo_album",        default: false, null: false
+    t.boolean  "transport_expenses", default: false, null: false
   end
 
   add_index "listings", ["user_id"], name: "index_listings_on_user_id"
