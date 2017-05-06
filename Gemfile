@@ -27,6 +27,9 @@ gem "thin"
 
 gem "ransack"
 
+  # 試しにいれる：http://marketing-web.hatenablog.com/entry/rails_favicon
+gem 'rails_real_favicon'
+
 
 group :production do 
 	gem 'pg'

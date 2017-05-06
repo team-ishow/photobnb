@@ -8,12 +8,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Brand</a>
+      <a class="navbar-brand" href="/">Ishow</a>
     </div>
 
      <!-- Location Search Form -->
-    <div class="navbar-form navbar-left form-group row-space-2">
-      <%= text_field_tag :search, params[:search], placeholder: "どちらまで?", class: "form-control",id:"pac-input" %>
+    <div class="navbar-form navbar-left row-space-2">
+      <%= text_field_tag :search, params[:search], placeholder: "どこで撮影？", class: "form-control",id:"pac-input" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -22,7 +22,7 @@
         <% if (!user_signed_in?) %>
           <!-- ログインしていない時 -->
           <li><%= link_to "カメラマンになる", new_listing_path %></li>
-          <li><a href="#">利用の流れ</a></li>
+          <li><%= link_to "利用の流れ", new_usage_path %></li>
           <li><%= link_to "アカウント作成", new_user_registration_path %></li>
           <li><%= link_to "ログイン", new_user_session_path %></li>
         <% else %>
